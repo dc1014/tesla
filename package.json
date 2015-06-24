@@ -1,0 +1,21 @@
+{
+  "name": "tesla",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.10.35"
+  },
+  "description": "A Hapi Server that uses Sockets, ES6, and io.js engine.",
+  "main": "index.js",
+  "scripts": {
+    "precommit": "npm run lint",
+    "lint": "jshint --exclude-path .gitignore && jscs index.s",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/daniel_casper/tesla.git"
+  },
+  "author": "Daniel Casper",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/daniel_casper/tesla#readme"
+}
