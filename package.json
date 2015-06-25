@@ -1,9 +1,6 @@
 {
   "name": "tesla",
   "version": "0.0.1",
-  "engines": {
-    "node": "0.10.35"
-  },
   "description": "A Hapi Server that uses Sockets, ES6, and io.js engine.",
   "main": "index.js",
   "scripts": {
