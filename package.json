@@ -6,7 +6,7 @@
   "scripts": {
     "precommit": "npm run lint",
     "lint": "jshint --exclude-path .gitignore && jscs index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -t 100"
   },
   "repository": {
     "type": "git",
