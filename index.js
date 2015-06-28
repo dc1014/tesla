@@ -18,14 +18,7 @@ server.route({
 var io = SocketIO.listen(server.listener);
 
 io.sockets.on('connection', function (socket) {
-    socket.on('accepted', function (connection) {
-        console.log(connection.data);
-        socket.emit('msg', {msg: 'potato'});
-    });
-
-    socket.on('response', function (response) {
-        console.log(response.data);
-    });
+    socket.emit('msg', {data: 'connected'})
 });
 
 if (!module.parent) server.start();
