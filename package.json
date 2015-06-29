@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "precommit": "npm run lint",
-    "lint": "jshint --exclude-path .gitignore && jscs index.js",
+    "lint": "jshint --exclude-path .gitignore && jscs server.js test",
     "test": "lab -t 100"
   },
   "repository": {
@@ -17,6 +17,7 @@
   "homepage": "https://bitbucket.org/daniel_casper/tesla#readme",
   "dependencies": {
     "hapi": "^8.6.1",
+    "hapi-auth-jwt2": "^4.4.1",
     "socket.io": "^1.3.5"
   },
   "devDependencies": {
