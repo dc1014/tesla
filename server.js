@@ -29,7 +29,8 @@ io.sockets.on('connection', function (socket) {
 // sio.set('authorization', socketioJwt.authorize({
 //     secret: creds.secret,
 //     handshake: true
-// }));
+//  });
+// );
 
 // server.routes({
 //     url: 'login',
