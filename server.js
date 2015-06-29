@@ -21,7 +21,7 @@ io.sockets.on('connection', function (socket) {
     socket.emit('msg', {data: 'connected'});
 });
 
-// // JWT EXAMPLE SOURCE: https://auth0.com/docs/quickstart/spa/socket-io/no-api
+// JWT EXAMPLE SOURCE: https://auth0.com/docs/quickstart/spa/socket-io/no-api
 // var socketioJwt = require('socketio-jwt');
 // var jwt = require('jsonwebtoken');
 // var creds = require('./credentials.json');
@@ -29,7 +29,7 @@ io.sockets.on('connection', function (socket) {
 // sio.set('authorization', socketioJwt.authorize({
 //     secret: creds.secret,
 //     handshake: true
-//  });
+//  })
 // );
 
 // server.routes({

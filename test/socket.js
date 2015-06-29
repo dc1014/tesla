@@ -14,16 +14,26 @@ lab.experiment('socket connection', function () {
         done();
     });
 
-    test('should not connect over http', function (done) {
-        expect(io('http://localhost:8000').connected).to.equal(false);
-        done();
-    });
+    // test('should not connect over http', function (done) {
+    //     var client = io('http://localhost:8000');
+    //     client.on('reconnect_attempt', function () {
+    //         console.log('hi');
+    //         done();
+    //     });
+    // });
+
+    // test('should connect over https', function (done) {
+    //     var client = io('https://localhost:8000');
+
+    //     client.disconnect();
+    //     done();
+    // });
 
     test('should emit msg event', function (done) {
         var client = io('https://localhost:8000');
-
         client.on('msg', function (msg) {
             expect(msg.data).to.equal('connected');
+            expect(client.connected).to.equal(true);
             client.disconnect();
             done();
         });
