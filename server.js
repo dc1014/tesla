@@ -1,9 +1,12 @@
-var Hapi = require('hapi');
-var SocketIO = require('socket.io');
 var fs = require('fs');
+var Hapi = require('hapi');
+var jwt = require('jsonwebtoken');
+var SocketIO = require('socket.io');
+var SocketIOJWT = require('socketio-jwt');
+
+var creds = require('./credentials.json');
 
 var options = {};
-
 var server = new Hapi.Server(options);
 
 server.connection({
@@ -17,36 +20,38 @@ server.connection({
 
 var io = SocketIO.listen(server.select('secureSocket').listener);
 
+// what does handshake imply? also, socketiojwt middleware from Oauth0
+
+io.use(SocketIOJWT.authorize({
+    secret: creds.secret,
+    handshake: true
+}));
+
 io.sockets.on('connection', function (socket) {
+    console.log(socket.decoded_token.name, 'connected');
     socket.emit('msg', {data: 'connected'});
 });
 
-// JWT EXAMPLE SOURCE: https://auth0.com/docs/quickstart/spa/socket-io/no-api
-// var socketioJwt = require('socketio-jwt');
-// var jwt = require('jsonwebtoken');
-// var creds = require('./credentials.json');
+server.start();
 
-// sio.set('authorization', socketioJwt.authorize({
-//     secret: creds.secret,
-//     handshake: true
-//  })
-// );
+// Time to Handle Auth.
 
-// server.routes({
-//     url: 'login',
-//     method: 'POST',
-//     handler: function (req, res) {
-//         //TO DO: validate user
-//         var profile = {
-//             first_name: 'John',
-//             last_name: 'Doe',
-//             email: 'john@doe.com',
-//             id: 123
-//         };
+server.route({
+    path: '/login',
+    method: 'POST',
+    handler: function (req, reply) {
+        // TO DO: validate user, e.g. compare hashes
+        var profile = {
+            first_name: 'John',
+            last_name: 'Doe',
+            name: 'John Doe',
+            email: 'john@doe.com',
+            id: 123
+        };
 
-//         var token = jwt.sign(profile, creds.secret, { expiresInMinutes: 60*5});
-//         reply({token: token});
-//     }
-// });
+        var token = jwt.sign(profile, creds.secret, {expiresInMinutes: 60 * 100});
+        reply(token);
+    }
+});
 
 module.exports = server;
