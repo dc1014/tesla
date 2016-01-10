@@ -1,6 +1,6 @@
 var io = require('socket.io-client');
 var socket = io.connect('https://localhost:8000');
-// var token = output of make a token
+var token = 123
 
 socket.on('connect', function (socket) {
     this.on('authenticated', function () {
@@ -44,5 +44,3 @@ socket.on('connect', function (socket) {
 //         }
 //     });
 // });
-
-

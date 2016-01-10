@@ -14,7 +14,7 @@
   },
   "author": "Daniel Casper",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/daniel_casper/tesla#readme",
+  "homepage": "https://github.com/dc1014/tesla#readme",
   "dependencies": {
     "hapi": "^8.6.1",
     "hapi-auth-jwt2": "^4.4.1",
